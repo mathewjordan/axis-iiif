@@ -1,0 +1,42 @@
+{
+  "name": "axis-iiif",
+  "version": "0.0.1",
+  "description": "An experiment in observing IIIF Change Discovery.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm run clean && node build.js && tsc --emitDeclarationOnly --outDir dist",
+    "build:static": "NODE_ENV=static OUT_DIR=static node build-static.js",
+    "clean": "rimraf dist",
+    "dev": "NODE_ENV=development node serve.js",
+    "test": "jest --watch",
+    "test-ci": "jest",
+    "prepublishOnly": "npm run build",
+    "ts-lint": "tsc --noEmit --incremental --watch"
+  },
+  "keywords": [
+    "iiif",
+    "change discovery"
+  ],
+  "author": "Mat Jordan",
+  "license": "ISC",
+  "devDependencies": {
+    "@jest/types": "^29.1.0",
+    "@types/react": "^18.0.21",
+    "@types/react-dom": "^18.0.6",
+    "chokidar": "^3.5.3",
+    "esbuild": "^0.15.9",
+    "esbuild-envfile-plugin": "^1.0.3",
+    "fs-extra": "^10.1.0",
+    "jest-fetch-mock": "^3.0.3",
+    "live-server": "^1.2.2",
+    "markdown-it": "^13.0.1",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "shiki": "^0.11.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
