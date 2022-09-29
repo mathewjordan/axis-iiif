@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import OrderedCollectionPage from "@/components/ChangeDiscovery/OrderedCollectionPage";
 import { OrderedCollectionShape } from "@/types/change-discovery";
 import { getOrderedCollection } from "@/services/request";
-import OrderedCollectionPage from "./OrderedCollectionPage";
 
 interface OrderedCollectionProps {
   id: string;
