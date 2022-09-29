@@ -21,7 +21,7 @@
       "@/*": ["*"],
       "@/components/*": ["components/*"],
       "@/context/*": ["context/*"],
-      "@/dev/*": ["dev/*"]
+      "@/types/*": ["types/*"]
     },
     "outDir": "./dist",
     "skipLibCheck": true, // Skip type checking of all declaration files

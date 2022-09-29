@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 const Wrapper = () => {
   return (
     <>
-      <App />
+      <App id="https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json" />
     </>
   );
 };
