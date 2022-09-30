@@ -22,7 +22,7 @@ const NextPageObserver: React.FC<NextPageObserverProps> = ({ id }) => {
     });
 
   return (
-    <button data-id={id} onClick={handleNext}>
+    <button data-id={id} onClick={handleNext} ref={ref}>
       Next Page
     </button>
   );
