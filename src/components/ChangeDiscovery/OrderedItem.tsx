@@ -1,5 +1,14 @@
 import { ActivityType, OrderedItemObjectShape } from "@/types/change-discovery";
 import React from "react";
+import Badge from "@/components/UI/Badge/Badge";
+import Panel from "@/components/UI/Panel/Panel";
+import {
+  PanelActions,
+  PanelBody,
+  PanelContent,
+  PanelHeader,
+} from "@/components/UI/Panel/Panel.styled";
+import Button from "../UI/Button/Button";
 
 interface OrderedItemProps {
   activity: ActivityType;
@@ -10,18 +19,26 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
   const { canonical, id, type } = object;
 
   return (
-    <div>
-      <strong>{activity}</strong>
-      <div>
-        {type}
-        {id}
-        {canonical && (
-          <a href={canonical} target="_blank">
-            Visit
-          </a>
-        )}
-      </div>
-    </div>
+    <Panel>
+      <PanelHeader>
+        <Badge>{activity}</Badge>
+        <Badge>{type}</Badge>
+      </PanelHeader>
+      <PanelBody>
+        <PanelContent>
+          <a href={id}>{id}</a>
+        </PanelContent>
+        <PanelActions>
+          {canonical && (
+            <Button as="a" href={canonical}>
+              Visit
+            </Button>
+          )}
+          <Button>Preview</Button>
+          <Button>Actions</Button>
+        </PanelActions>
+      </PanelBody>
+    </Panel>
   );
 };
 
