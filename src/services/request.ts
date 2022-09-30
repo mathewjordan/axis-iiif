@@ -12,9 +12,8 @@ export async function getOrderedCollection(id: string) {
 }
 
 export async function getOrderedCollectionPage(id: string) {
-  const page = new Request(id);
-
   try {
+    const page = new Request(id);
     const response = await page.poll(60000).get();
     return response?.data;
   } catch (err) {

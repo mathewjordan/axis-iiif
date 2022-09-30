@@ -1,10 +1,16 @@
 import React from "react";
-import OrderedCollection from "./components/ChangeDiscovery/OrderedCollection";
+import OrderedCollection from "@/components/ChangeDiscovery/OrderedCollection";
+import { OrderedCollectionProvider } from "@/context/ordered-collection-context";
+interface Props {
+  id: string;
+}
 
-const App = ({ id }) => {
+const App: React.FC<Props> = ({ id }) => {
   return (
     <>
-      <OrderedCollection id={id} />
+      <OrderedCollectionProvider>
+        <OrderedCollection id={id} />
+      </OrderedCollectionProvider>
     </>
   );
 };

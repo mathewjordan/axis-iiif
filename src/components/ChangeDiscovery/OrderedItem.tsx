@@ -10,7 +10,7 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
   const { canonical, id, type } = object;
 
   return (
-    <li>
+    <div>
       <strong>{activity}</strong>
       <div>
         {type}
@@ -21,7 +21,7 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
           </a>
         )}
       </div>
-    </li>
+    </div>
   );
 };
 

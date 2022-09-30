@@ -56,6 +56,7 @@ export interface OrderedItemActorShape {
 }
 
 type Context = "http://iiif.io/api/discovery/1/context.json";
+
 export type ActivityType =
   | "Create"
   | "Update"
