@@ -2,6 +2,8 @@ import { ActivityType, OrderedItemObjectShape } from "@/types/change-discovery";
 import React from "react";
 import Badge from "@/components/UI/Badge/Badge";
 import Panel from "@/components/UI/Panel/Panel";
+import SVG from "@/components//UI/SVG/SVG";
+import { ArrowForward } from "@/components/UI/SVG/Paths";
 import {
   PanelActions,
   PanelBody,
@@ -22,6 +24,9 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
     <Panel>
       <PanelHeader>
         <Badge>{activity}</Badge>
+        <SVG>
+          <ArrowForward />
+        </SVG>
         <Badge>{type}</Badge>
       </PanelHeader>
       <PanelBody>

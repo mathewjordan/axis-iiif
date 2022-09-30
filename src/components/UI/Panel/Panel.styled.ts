@@ -7,17 +7,28 @@ const PanelActions = styled("div", {
 const PanelBody = styled("div", {
   display: "flex",
   justifyContent: "space-between",
-  alignContent: "center",
 });
 
 const PanelContent = styled("div", {
   display: "flex",
-  alignContent: "center",
+  justifyContent: "flex-end",
+  flexDirection: "column",
+  fontSize: "1rem",
+
+  "a, a:visited": {
+    color: "#000a",
+    textDecoration: "none",
+    transition: "$all",
+
+    "&:hover, &:active": {
+      color: "#5746af",
+    },
+  },
 });
 
 const PanelHeader = styled("header", {
-  margin: "0 0 0.618rem",
   fontWeight: "700",
+  fontSize: "1rem",
   display: "flex",
   alignContent: "center",
 });
@@ -31,7 +42,7 @@ const PanelStyled = styled("article", {
   transition: "$all",
 
   "&:hover": {
-    boxShadow: "3px 3px 8px #0002",
+    boxShadow: "8px 8px 19px #0002",
   },
 });
 
