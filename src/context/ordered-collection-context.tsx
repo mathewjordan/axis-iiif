@@ -28,6 +28,12 @@ function orderedCollectionReducer(
   action: OrderedCollectionAction,
 ) {
   switch (action.type) {
+    case "resetCart": {
+      return {
+        ...state,
+        cart: [],
+      };
+    }
     case "updateNext": {
       return {
         ...state,

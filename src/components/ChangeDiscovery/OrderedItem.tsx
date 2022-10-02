@@ -11,9 +11,8 @@ import {
   PanelContent,
   PanelHeader,
 } from "@/components/UI/Workspace/Panel/Panel.styled";
-import Button from "../UI/Button/Button";
-import Modal from "../UI/Modal/Modal";
-import { useOrderedCollectionState } from "@/context/ordered-collection-context";
+import Button from "@/components/UI/Button/Button";
+import Modal from "@/components/UI/Modal/Modal";
 
 interface OrderedItemProps {
   activity: ActivityType;

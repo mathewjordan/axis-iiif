@@ -3,11 +3,14 @@ import App from "@/index";
 import { createRoot } from "react-dom/client";
 
 const Wrapper = () => {
-  return (
-    <>
-      <App id="https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json" />
-    </>
-  );
+  const endpoint =
+    "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json";
+
+  const handleCallback = (cart) => {
+    console.log(cart);
+  };
+
+  return <App id={endpoint} cartCallback={handleCallback} />;
 };
 
 const container = document.getElementById("root");

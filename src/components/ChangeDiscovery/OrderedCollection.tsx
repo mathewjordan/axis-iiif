@@ -15,18 +15,27 @@ import {
   WorkspaceHeader,
   WorkspaceScroll,
 } from "@/components/UI/Workspace/Workspace.styled";
-import Dropzone from "../UI/Workspace/Dropzone/Dropzone";
-import Button from "../UI/Button/Button";
+import Dropzone from "@/components/UI/Workspace/Dropzone/Dropzone";
+import Button from "@/components/UI/Button/Button";
 
 interface OrderedCollectionProps {
+  handleCart?: (arg0: string[]) => void;
   id: string;
 }
 
-const OrderedCollection: React.FC<OrderedCollectionProps> = ({ id }) => {
+const OrderedCollection: React.FC<OrderedCollectionProps> = ({
+  handleCart = () => {},
+  id,
+}) => {
   const [data, setData] = useState<OrderedCollectionShape>();
   const { cart, next, pages } = useOrderedCollectionState();
 
   const dispatch: any = useOrderedCollectionDispatch();
+
+  const handleReset = () =>
+    dispatch({
+      type: "resetCart",
+    });
 
   useEffect(() => {
     if (id)
@@ -54,8 +63,10 @@ const OrderedCollection: React.FC<OrderedCollectionProps> = ({ id }) => {
         <WorkspaceAside>
           {cart.length > 0 && (
             <WorkspaceActions>
-              <Button>Harvest {cart.length} Resource(s)</Button>
-              <Button>Clear All</Button>
+              <Button onClick={() => handleCart(cart)}>
+                Harvest {cart.length} Resource(s)
+              </Button>
+              <Button onClick={handleReset}>Reset All</Button>
             </WorkspaceActions>
           )}
           <Dropzone />
