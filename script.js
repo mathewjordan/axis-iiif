@@ -1054,7 +1054,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect13(create, deps) {
+          function useEffect14(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1834,7 +1834,7 @@
           exports.useContext = useContext2;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect13;
+          exports.useEffect = useEffect14;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -71630,6 +71630,11 @@ ${generateSegmentFilename(i4)}`);
   var OrderedCollectionDispatchContext = import_react.default.createContext(defaultState);
   function orderedCollectionReducer(state, action) {
     switch (action.type) {
+      case "resetCart": {
+        return __spreadProps(__spreadValues({}, state), {
+          cart: []
+        });
+      }
       case "updateNext": {
         return __spreadProps(__spreadValues({}, state), {
           next: action.id
@@ -81876,7 +81881,8 @@ ${generateSegmentFilename(i4)}`);
     cursor: "move",
     borderLeft: "none",
     "&[data-cart=true]": {
-      borderLeft: "1rem solid #5746af"
+      borderLeft: "1rem solid #5746af",
+      cursor: "auto"
     },
     "&:hover": {
       boxShadow: "8px 8px 19px #0002"
@@ -84335,19 +84341,22 @@ ${generateSegmentFilename(i4)}`);
     display: "flex",
     alignContent: "center",
     alignItems: "center",
-    background: "none",
-    backgroundColor: "#fff",
-    border: "1px solid #0002",
+    border: "none",
+    background: "linear-gradient(135deg, #5746afdd, #5746af);",
     fontFamily: "$sans",
-    padding: "0.382rem 1rem",
+    padding: "0.5rem 1rem",
     margin: "0 0 0 1rem",
     fontSize: "1rem",
     textDecoration: "none",
     cursor: "pointer",
-    color: "#000a",
+    color: "#fff",
     borderRadius: "3px",
     textAlign: "center",
     justifyContent: "center",
+    transition: "$all",
+    "&:hover, &:active": {
+      background: "linear-gradient(135deg, #392c72dd, #392c72);"
+    },
     svg: {
       marginLeft: "0.5em",
       opacity: "0.7"
@@ -84355,11 +84364,17 @@ ${generateSegmentFilename(i4)}`);
   });
 
   // src/components/UI/Button/Button.tsx
-  var Button2 = ({ as: as2 = "button", children, href }) => {
+  var Button2 = ({
+    as: as2 = "button",
+    children,
+    href,
+    onClick
+  }) => {
     return /* @__PURE__ */ import_react134.default.createElement(ButtonStyled, {
       as: as2,
       href,
-      target: href && "_blank"
+      target: href && "_blank",
+      onClick
     }, children);
   };
   var Button_default = Button2;
@@ -84633,14 +84648,19 @@ ${generateSegmentFilename(i4)}`);
     },
     [`> ${ButtonStyled}`]: {
       fontSize: "inherit",
+      background: "transparent",
       color: "#fff",
       fill: "#fff",
       stroke: "#fff",
-      padding: "0"
+      padding: "0",
+      "&:hover, &:active": {
+        background: "transparent"
+      }
     }
   });
   var ModalContentInner = re("div", {
-    backgroundColor: "#fff"
+    backgroundColor: "#fff",
+    minHeight: "500px"
   });
   var ModalClose = re($5d3850c4d0b4e6c7$export$f39c2d165cd861fe, {});
   var ModalOverlay = re($5d3850c4d0b4e6c7$export$c6fdb837b070b4ff, {
@@ -84757,7 +84777,6 @@ ${generateSegmentFilename(i4)}`);
     display: "flex"
   });
   var WorkspaceScroll = styled2("div", {
-    overflow: "scroll",
     width: "61.8%",
     flexShrink: "0"
   });
@@ -85689,6 +85708,7 @@ ${generateSegmentFilename(i4)}`);
     border: "2px dashed #0002",
     backgroundColor: "#0001",
     borderRadius: "3px",
+    transition: "$all",
     ul: {
       padding: "0",
       margin: "0 1rem",
@@ -85711,19 +85731,34 @@ ${generateSegmentFilename(i4)}`);
       })
     }));
     const isActive = canDrop && isOver;
+    const activeDropStyling = {
+      backgroundColor: "#5746af22",
+      border: "2px solid #5746afaa",
+      boxShadow: " inset 5px 5px 8px #0001"
+    };
     return /* @__PURE__ */ import_react141.default.createElement(DropzoneStyled, {
-      ref: drop
+      ref: drop,
+      style: isActive ? activeDropStyling : {}
     }, cart && /* @__PURE__ */ import_react141.default.createElement("ul", null, cart.map((id) => {
-      return /* @__PURE__ */ import_react141.default.createElement("li", null, id);
+      return /* @__PURE__ */ import_react141.default.createElement("li", {
+        key: id
+      }, id);
     })));
   };
   var Dropzone_default = Dropzone;
 
   // src/components/ChangeDiscovery/OrderedCollection.tsx
-  var OrderedCollection = ({ id }) => {
+  var OrderedCollection = ({
+    handleCart = () => {
+    },
+    id
+  }) => {
     const [data, setData] = (0, import_react142.useState)();
     const { cart, next, pages } = useOrderedCollectionState();
     const dispatch = useOrderedCollectionDispatch();
+    const handleReset = () => dispatch({
+      type: "resetCart"
+    });
     (0, import_react142.useEffect)(() => {
       if (id)
         getOrderedCollection(id).then((data2) => {
@@ -85743,24 +85778,35 @@ ${generateSegmentFilename(i4)}`);
       key: index2
     })), next && /* @__PURE__ */ import_react142.default.createElement(NextPageObserver_default, {
       id: next
-    })), /* @__PURE__ */ import_react142.default.createElement(WorkspaceAside, null, cart.length > 0 && /* @__PURE__ */ import_react142.default.createElement(WorkspaceActions, null, /* @__PURE__ */ import_react142.default.createElement(Button_default, null, "Harvest ", cart.length, " Resource(s)"), /* @__PURE__ */ import_react142.default.createElement(Button_default, null, "Clear All")), /* @__PURE__ */ import_react142.default.createElement(Dropzone_default, null))));
+    })), /* @__PURE__ */ import_react142.default.createElement(WorkspaceAside, null, cart.length > 0 && /* @__PURE__ */ import_react142.default.createElement(WorkspaceActions, null, /* @__PURE__ */ import_react142.default.createElement(Button_default, {
+      onClick: () => handleCart(cart)
+    }, "Harvest ", cart.length, " Resource(s)"), /* @__PURE__ */ import_react142.default.createElement(Button_default, {
+      onClick: handleReset
+    }, "Reset All")), /* @__PURE__ */ import_react142.default.createElement(Dropzone_default, null))));
   };
   var OrderedCollection_default = OrderedCollection;
 
   // src/index.tsx
-  var App = ({ id }) => {
-    return /* @__PURE__ */ import_react143.default.createElement(import_react143.default.Fragment, null, /* @__PURE__ */ import_react143.default.createElement(OrderedCollectionProvider, null, /* @__PURE__ */ import_react143.default.createElement(OrderedCollection_default, {
-      id
-    })));
+  var App = ({ cartCallback = () => {
+  }, id }) => {
+    return /* @__PURE__ */ import_react143.default.createElement(OrderedCollectionProvider, null, /* @__PURE__ */ import_react143.default.createElement(OrderedCollection_default, {
+      id,
+      handleCart: cartCallback
+    }));
   };
   var src_default = App;
 
   // src/dev.tsx
   var import_client = __toESM(require_client());
   var Wrapper = () => {
-    return /* @__PURE__ */ import_react144.default.createElement(import_react144.default.Fragment, null, /* @__PURE__ */ import_react144.default.createElement(src_default, {
-      id: "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json"
-    }));
+    const endpoint = "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json";
+    const handleCallback = (cart) => {
+      console.log(cart);
+    };
+    return /* @__PURE__ */ import_react144.default.createElement(src_default, {
+      id: endpoint,
+      cartCallback: handleCallback
+    });
   };
   var container = document.getElementById("root");
   var root = (0, import_client.createRoot)(container);
