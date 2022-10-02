@@ -1,5 +1,6 @@
 import { ActivityType, OrderedItemObjectShape } from "@/types/change-discovery";
 import React from "react";
+import Clover from "@samvera/clover-iiif";
 import Badge from "@/components/UI/Badge/Badge";
 import Panel from "@/components/UI/Panel/Panel";
 import SVG from "@/components//UI/SVG/SVG";
@@ -11,6 +12,7 @@ import {
   PanelHeader,
 } from "@/components/UI/Panel/Panel.styled";
 import Button from "../UI/Button/Button";
+import Modal from "../UI/Modal/Modal";
 
 interface OrderedItemProps {
   activity: ActivityType;
@@ -31,7 +33,9 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
       </PanelHeader>
       <PanelBody>
         <PanelContent>
-          <a href={id}>{id}</a>
+          <a href={id} target="_blank">
+            {id}
+          </a>
         </PanelContent>
         <PanelActions>
           {canonical && (
@@ -39,7 +43,16 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
               Visit
             </Button>
           )}
-          <Button>Preview</Button>
+          <Modal buttonText="Preview" title={id}>
+            <Clover
+              id={id}
+              options={{
+                canvasHeight: "500px",
+                showIIIFBadge: false,
+                showInformationToggle: false,
+              }}
+            />
+          </Modal>
           <Button>Actions</Button>
         </PanelActions>
       </PanelBody>

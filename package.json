@@ -36,6 +36,8 @@
     "typescript": "^4.8.4"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.0",
+    "@samvera/clover-iiif": "^1.12.3",
     "@stitches/react": "^1.2.8",
     "axios": "^0.27.2",
     "axios-request-handler": "^1.0.4",

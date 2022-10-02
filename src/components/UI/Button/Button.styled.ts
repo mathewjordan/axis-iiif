@@ -1,6 +1,9 @@
 import { styled } from "@/stitches";
 
 const ButtonStyled = styled("button", {
+  display: "flex",
+  alignContent: "center",
+  alignItems: "center",
   background: "none",
   backgroundColor: "transparent",
   border: "1px solid #0002",
@@ -12,6 +15,11 @@ const ButtonStyled = styled("button", {
   cursor: "pointer",
   color: "#000a",
   borderRadius: "3px",
+
+  svg: {
+    marginLeft: "0.5em",
+    opacity: "0.7",
+  },
 });
 
 export { ButtonStyled };
