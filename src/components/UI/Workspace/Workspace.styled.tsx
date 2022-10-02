@@ -13,7 +13,6 @@ const WorkspaceBody = styled("section", {
 });
 
 const WorkspaceScroll = styled("div", {
-  overflow: "scroll",
   width: "61.8%",
   flexShrink: "0",
 });

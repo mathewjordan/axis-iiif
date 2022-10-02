@@ -32,15 +32,21 @@ const ModalContentHeader = styled("div", {
 
   [`> ${ButtonStyled}`]: {
     fontSize: "inherit",
+    background: "transparent",
     color: "#fff",
     fill: "#fff",
     stroke: "#fff",
     padding: "0",
+
+    "&:hover, &:active": {
+      background: "transparent",
+    },
   },
 });
 
 const ModalContentInner = styled("div", {
   backgroundColor: "#fff",
+  minHeight: "500px",
 });
 
 const ModalClose = styled(Dialog.Close, {});

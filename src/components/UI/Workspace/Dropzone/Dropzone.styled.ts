@@ -6,6 +6,7 @@ const DropzoneStyled = styled("div", {
   border: "2px dashed #0002",
   backgroundColor: "#0001",
   borderRadius: "3px",
+  transition: "$all",
 
   ul: {
     padding: "0",

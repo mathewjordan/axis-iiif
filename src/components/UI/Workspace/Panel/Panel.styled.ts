@@ -45,6 +45,7 @@ const PanelStyled = styled("article", {
 
   "&[data-cart=true]": {
     borderLeft: "1rem solid #5746af",
+    cursor: "auto",
   },
 
   "&:hover": {
