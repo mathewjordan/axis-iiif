@@ -53,7 +53,6 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
               }}
             />
           </Modal>
-          <Button>Actions</Button>
         </PanelActions>
       </PanelBody>
     </Panel>
