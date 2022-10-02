@@ -1,4 +1,5 @@
 import { styled } from "@/stitches";
+import { ButtonStyled } from "@/components/UI/Button/Button.styled";
 
 const WorkspaceHeader = styled("span", {
   display: "flex",
@@ -14,19 +15,32 @@ const WorkspaceBody = styled("section", {
 const WorkspaceScroll = styled("div", {
   overflow: "scroll",
   width: "61.8%",
+  flexShrink: "0",
 });
 
 const WorkspaceAside = styled("aside", {
-  border: "2px dashed #0002",
   flexGrow: "1",
   margin: "0 0 0 2rem",
-  padding: "1rem",
-  borderRadius: "3px",
+});
+
+const WorkspaceActions = styled("div", {
+  display: "flex",
+  marginBottom: "1rem",
+
+  [`> ${ButtonStyled}`]: {
+    margin: "0 1rem 0 0",
+    flexGrow: "1",
+
+    "&:last-child": {
+      margin: "0",
+    },
+  },
 });
 
 const WorkspaceStyled = styled("div", {});
 
 export {
+  WorkspaceActions,
   WorkspaceAside,
   WorkspaceBody,
   WorkspaceHeader,

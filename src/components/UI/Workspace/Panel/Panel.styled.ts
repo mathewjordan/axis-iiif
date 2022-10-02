@@ -40,6 +40,12 @@ const PanelStyled = styled("article", {
   borderRadius: "3px",
   boxShadow: "5px 5px 11px #0001",
   transition: "$all",
+  cursor: "move",
+  borderLeft: "none",
+
+  "&[data-cart=true]": {
+    borderLeft: "1rem solid #5746af",
+  },
 
   "&:hover": {
     boxShadow: "8px 8px 19px #0002",

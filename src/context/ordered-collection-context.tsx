@@ -3,6 +3,7 @@ import React from "react";
 interface OrderedCollectionContextStore {
   next: string;
   pages: string[];
+  cart: string[];
 }
 
 interface OrderedCollectionAction {
@@ -13,6 +14,7 @@ interface OrderedCollectionAction {
 const defaultState: OrderedCollectionContextStore = {
   next: "",
   pages: [],
+  cart: [],
 };
 
 const OrderedCollectionStateContext =
@@ -38,6 +40,14 @@ function orderedCollectionReducer(
         pages: !state.pages.includes(action.id)
           ? [...state.pages, action.id]
           : state.pages,
+      };
+    }
+    case "updateCart": {
+      return {
+        ...state,
+        cart: !state.cart.includes(action.id)
+          ? [...state.cart, action.id]
+          : state.cart,
       };
     }
     default: {

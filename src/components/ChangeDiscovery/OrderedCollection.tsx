@@ -9,11 +9,14 @@ import { OrderedCollectionShape } from "@/types/change-discovery";
 import { getOrderedCollection } from "@/services/request";
 import Workspace from "@/components/UI/Workspace/Workspace";
 import {
+  WorkspaceActions,
   WorkspaceAside,
   WorkspaceBody,
   WorkspaceHeader,
   WorkspaceScroll,
 } from "@/components/UI/Workspace/Workspace.styled";
+import Dropzone from "../UI/Workspace/Dropzone/Dropzone";
+import Button from "../UI/Button/Button";
 
 interface OrderedCollectionProps {
   id: string;
@@ -21,7 +24,7 @@ interface OrderedCollectionProps {
 
 const OrderedCollection: React.FC<OrderedCollectionProps> = ({ id }) => {
   const [data, setData] = useState<OrderedCollectionShape>();
-  const { next, pages } = useOrderedCollectionState();
+  const { cart, next, pages } = useOrderedCollectionState();
 
   const dispatch: any = useOrderedCollectionDispatch();
 
@@ -48,7 +51,15 @@ const OrderedCollection: React.FC<OrderedCollectionProps> = ({ id }) => {
           ))}
           {next && <NextPageObserver id={next} />}
         </WorkspaceScroll>
-        <WorkspaceAside></WorkspaceAside>
+        <WorkspaceAside>
+          {cart.length > 0 && (
+            <WorkspaceActions>
+              <Button>Harvest {cart.length} Resource(s)</Button>
+              <Button>Clear All</Button>
+            </WorkspaceActions>
+          )}
+          <Dropzone />
+        </WorkspaceAside>
       </WorkspaceBody>
     </Workspace>
   );

@@ -5,7 +5,7 @@ const ButtonStyled = styled("button", {
   alignContent: "center",
   alignItems: "center",
   background: "none",
-  backgroundColor: "transparent",
+  backgroundColor: "#fff",
   border: "1px solid #0002",
   fontFamily: "$sans",
   padding: "0.382rem 1rem",
@@ -15,6 +15,8 @@ const ButtonStyled = styled("button", {
   cursor: "pointer",
   color: "#000a",
   borderRadius: "3px",
+  textAlign: "center",
+  justifyContent: "center",
 
   svg: {
     marginLeft: "0.5em",
