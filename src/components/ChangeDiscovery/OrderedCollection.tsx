@@ -3,7 +3,7 @@ import {
   useOrderedCollectionDispatch,
   useOrderedCollectionState,
 } from "@/context/ordered-collection-context";
-import NextPageObserver from "@/components/UI/NextPageObserver";
+import NextPageObserver from "@/components/ChangeDiscovery/NextPageObserver";
 import OrderedCollectionPage from "@/components/ChangeDiscovery/OrderedCollectionPage";
 import { OrderedCollectionShape } from "@/types/change-discovery";
 import { getOrderedCollection } from "@/services/request";

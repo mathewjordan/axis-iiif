@@ -9,7 +9,7 @@ interface NextPageObserverProps {
 const NextPageObserver: React.FC<NextPageObserverProps> = ({ id }) => {
   const dispatch: any = useOrderedCollectionDispatch();
 
-  const { ref, entry } = useInView({ delay: 100, rootMargin: "500px" });
+  const { ref, entry } = useInView({ delay: 100, rootMargin: "800px" });
 
   useEffect(() => {
     if (entry?.isIntersecting) handleNext();
