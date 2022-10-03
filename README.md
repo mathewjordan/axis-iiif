@@ -23,9 +23,9 @@ const handleCartCallback = (resources) => {
   /**
    * Output:
    *
-   * Array [ "https://digital.lib.utk.edu/...", "https://digital.lib.utk.edu/...." ]
-   *  0: "https://digital.lib.utk.edu/assemble/manifest/cDanielCartoon/859"
-   *  1: "https://digital.lib.utk.edu/assemble/manifest/heilman/1187"
+   * Array [ "https://example.org/iiif/...", "https://example.org/iiif/...." ]
+   *  0: "https://example.org/iiif/manifest/821"
+   *  1: "https://example.org/iiif/manifest/1187"
    *  length: 2
    */
 };
