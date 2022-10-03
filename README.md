@@ -12,8 +12,7 @@ Axis allows for consuming applications to be returned an array of IIIF Presentat
 
 ### Cart Callback
 
-Example on using `cartCallback` to return to your consuming application the active canvas ID. This will return as a string.
-
+Example using `cartCallback` to return an array of strings `string[]` to your consuming application.
 ```jsx
 const id = "https://example.org/iiif/change-discovery.json";
 
