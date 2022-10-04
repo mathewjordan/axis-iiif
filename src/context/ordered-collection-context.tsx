@@ -1,7 +1,7 @@
 import React from "react";
 
 interface OrderedCollectionContextStore {
-  next: string;
+  prev: string;
   pages: string[];
   cart: string[];
 }
@@ -12,7 +12,7 @@ interface OrderedCollectionAction {
 }
 
 const defaultState: OrderedCollectionContextStore = {
-  next: "",
+  prev: "",
   pages: [],
   cart: [],
 };
@@ -34,10 +34,10 @@ function orderedCollectionReducer(
         cart: [],
       };
     }
-    case "updateNext": {
+    case "updatePrev": {
       return {
         ...state,
-        next: action.id,
+        prev: action.id,
       };
     }
     case "updatePages": {

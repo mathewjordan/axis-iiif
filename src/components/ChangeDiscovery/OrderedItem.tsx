@@ -16,10 +16,15 @@ import Modal from "@/components/UI/Modal/Modal";
 
 interface OrderedItemProps {
   activity: ActivityType;
+  endTime?: string;
   object: OrderedItemObjectShape;
 }
 
-const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
+const OrderedItem: React.FC<OrderedItemProps> = ({
+  activity,
+  endTime,
+  object,
+}) => {
   const { canonical, id, type } = object;
 
   return (
@@ -30,6 +35,7 @@ const OrderedItem: React.FC<OrderedItemProps> = ({ activity, object }) => {
           <ArrowForward />
         </SVG>
         <Badge>{type}</Badge>
+        {endTime && <Badge>{endTime}</Badge>}
       </PanelHeader>
       <PanelBody>
         <PanelContent>

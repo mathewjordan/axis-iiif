@@ -3,7 +3,7 @@ import {
   useOrderedCollectionDispatch,
   useOrderedCollectionState,
 } from "@/context/ordered-collection-context";
-import NextPageObserver from "@/components/ChangeDiscovery/NextPageObserver";
+import PrevPageObserver from "@/components/ChangeDiscovery/PrevPageObserver";
 import OrderedCollectionPage from "@/components/ChangeDiscovery/OrderedCollectionPage";
 import { OrderedCollectionShape } from "@/types/change-discovery";
 import { getOrderedCollection } from "@/services/request";
@@ -28,7 +28,7 @@ const OrderedCollection: React.FC<OrderedCollectionProps> = ({
   id,
 }) => {
   const [data, setData] = useState<OrderedCollectionShape>();
-  const { cart, next, pages } = useOrderedCollectionState();
+  const { cart, prev, pages } = useOrderedCollectionState();
 
   const dispatch: any = useOrderedCollectionDispatch();
 
@@ -43,7 +43,7 @@ const OrderedCollection: React.FC<OrderedCollectionProps> = ({
         setData(data);
         dispatch({
           type: "updatePages",
-          id: data?.first?.id,
+          id: data?.last?.id,
         });
       });
   }, [id]);
@@ -58,7 +58,7 @@ const OrderedCollection: React.FC<OrderedCollectionProps> = ({
           {pages.map((id, index) => (
             <OrderedCollectionPage id={id} index={index} key={index} />
           ))}
-          {next && <NextPageObserver id={next} />}
+          {prev && <PrevPageObserver id={prev} />}
         </WorkspaceScroll>
         <WorkspaceAside>
           {cart.length > 0 && (

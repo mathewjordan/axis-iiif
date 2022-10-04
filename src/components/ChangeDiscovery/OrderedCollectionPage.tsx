@@ -17,12 +17,13 @@ const OrderedCollectionPage: React.FC<OrderedCollectionPageProps> = ({
   const dispatch: any = useOrderedCollectionDispatch();
 
   useEffect(() => {
-    if (id)
+    if (id && !data)
       getOrderedCollectionPage(id).then((data) => {
+        data.orderedItems.reverse();
         setData(data);
         dispatch({
-          type: "updateNext",
-          id: data?.next?.id,
+          type: "updatePrev",
+          id: data?.prev?.id,
         });
       });
   }, [id]);
@@ -31,9 +32,10 @@ const OrderedCollectionPage: React.FC<OrderedCollectionPageProps> = ({
 
   return (
     <div>
-      {data?.orderedItems?.map((item) => (
+      {data.orderedItems.map((item) => (
         <OrderedItem
           activity={item.type}
+          endTime={item.endTime}
           object={item.object}
           key={item.object.id}
         />
