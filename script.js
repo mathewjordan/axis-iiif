@@ -71622,7 +71622,7 @@ ${generateSegmentFilename(i4)}`);
   // src/context/ordered-collection-context.tsx
   var import_react = __toESM(require_react());
   var defaultState = {
-    next: "",
+    prev: "",
     pages: [],
     cart: []
   };
@@ -71635,9 +71635,9 @@ ${generateSegmentFilename(i4)}`);
           cart: []
         });
       }
-      case "updateNext": {
+      case "updatePrev": {
         return __spreadProps(__spreadValues({}, state), {
-          next: action.id
+          prev: action.id
         });
       }
       case "updatePages": {
@@ -71685,7 +71685,7 @@ ${generateSegmentFilename(i4)}`);
     return context;
   }
 
-  // src/components/ChangeDiscovery/NextPageObserver.tsx
+  // src/components/ChangeDiscovery/PrevPageObserver.tsx
   var import_react2 = __toESM(require_react());
 
   // node_modules/react-intersection-observer/react-intersection-observer.modern.mjs
@@ -71850,25 +71850,25 @@ ${generateSegmentFilename(i4)}`);
     return result;
   }
 
-  // src/components/ChangeDiscovery/NextPageObserver.tsx
-  var NextPageObserver = ({ id }) => {
+  // src/components/ChangeDiscovery/PrevPageObserver.tsx
+  var PrevPageObserver = ({ id }) => {
     const dispatch = useOrderedCollectionDispatch();
     const { ref, entry } = useInView({ delay: 100, rootMargin: "800px" });
     (0, import_react2.useEffect)(() => {
       if (entry == null ? void 0 : entry.isIntersecting)
-        handleNext();
+        handlePrev();
     }, [entry]);
-    const handleNext = () => dispatch({
+    const handlePrev = () => dispatch({
       type: "updatePages",
       id
     });
     return /* @__PURE__ */ import_react2.default.createElement("button", {
       "data-id": id,
-      onClick: handleNext,
+      onClick: handlePrev,
       ref
-    }, "Next Page");
+    }, "Previous Page");
   };
-  var NextPageObserver_default = NextPageObserver;
+  var PrevPageObserver_default = PrevPageObserver;
 
   // src/components/ChangeDiscovery/OrderedCollectionPage.tsx
   var import_react139 = __toESM(require_react());
@@ -84683,11 +84683,15 @@ ${generateSegmentFilename(i4)}`);
   var Modal_default = Modal;
 
   // src/components/ChangeDiscovery/OrderedItem.tsx
-  var OrderedItem = ({ activity, object }) => {
+  var OrderedItem = ({
+    activity,
+    endTime,
+    object
+  }) => {
     const { canonical, id, type } = object;
     return /* @__PURE__ */ import_react138.default.createElement(Panel_default, {
       id
-    }, /* @__PURE__ */ import_react138.default.createElement(PanelHeader, null, /* @__PURE__ */ import_react138.default.createElement(Badge_default, null, activity), /* @__PURE__ */ import_react138.default.createElement(SVG_default, null, /* @__PURE__ */ import_react138.default.createElement(ArrowForward, null)), /* @__PURE__ */ import_react138.default.createElement(Badge_default, null, type)), /* @__PURE__ */ import_react138.default.createElement(PanelBody, null, /* @__PURE__ */ import_react138.default.createElement(PanelContent, null, /* @__PURE__ */ import_react138.default.createElement("a", {
+    }, /* @__PURE__ */ import_react138.default.createElement(PanelHeader, null, /* @__PURE__ */ import_react138.default.createElement(Badge_default, null, activity), /* @__PURE__ */ import_react138.default.createElement(SVG_default, null, /* @__PURE__ */ import_react138.default.createElement(ArrowForward, null)), /* @__PURE__ */ import_react138.default.createElement(Badge_default, null, type), endTime && /* @__PURE__ */ import_react138.default.createElement(Badge_default, null, endTime)), /* @__PURE__ */ import_react138.default.createElement(PanelBody, null, /* @__PURE__ */ import_react138.default.createElement(PanelContent, null, /* @__PURE__ */ import_react138.default.createElement("a", {
       href: id,
       target: "_blank"
     }, id)), /* @__PURE__ */ import_react138.default.createElement(PanelActions, null, canonical && /* @__PURE__ */ import_react138.default.createElement(Button_default, {
@@ -84739,24 +84743,25 @@ ${generateSegmentFilename(i4)}`);
   var OrderedCollectionPage = ({
     id
   }) => {
-    var _a2;
     const [data, setData] = (0, import_react139.useState)();
     const dispatch = useOrderedCollectionDispatch();
     (0, import_react139.useEffect)(() => {
-      if (id)
+      if (id && !data)
         getOrderedCollectionPage(id).then((data2) => {
-          var _a3;
+          var _a2;
+          data2.orderedItems.reverse();
           setData(data2);
           dispatch({
-            type: "updateNext",
-            id: (_a3 = data2 == null ? void 0 : data2.next) == null ? void 0 : _a3.id
+            type: "updatePrev",
+            id: (_a2 = data2 == null ? void 0 : data2.prev) == null ? void 0 : _a2.id
           });
         });
     }, [id]);
     if (!data)
       return /* @__PURE__ */ import_react139.default.createElement(import_react139.default.Fragment, null);
-    return /* @__PURE__ */ import_react139.default.createElement("div", null, (_a2 = data == null ? void 0 : data.orderedItems) == null ? void 0 : _a2.map((item) => /* @__PURE__ */ import_react139.default.createElement(OrderedItem_default, {
+    return /* @__PURE__ */ import_react139.default.createElement("div", null, data.orderedItems.map((item) => /* @__PURE__ */ import_react139.default.createElement(OrderedItem_default, {
       activity: item.type,
+      endTime: item.endTime,
       object: item.object,
       key: item.object.id
     })));
@@ -85754,7 +85759,7 @@ ${generateSegmentFilename(i4)}`);
     id
   }) => {
     const [data, setData] = (0, import_react142.useState)();
-    const { cart, next, pages } = useOrderedCollectionState();
+    const { cart, prev, pages } = useOrderedCollectionState();
     const dispatch = useOrderedCollectionDispatch();
     const handleReset = () => dispatch({
       type: "resetCart"
@@ -85766,7 +85771,7 @@ ${generateSegmentFilename(i4)}`);
           setData(data2);
           dispatch({
             type: "updatePages",
-            id: (_a2 = data2 == null ? void 0 : data2.first) == null ? void 0 : _a2.id
+            id: (_a2 = data2 == null ? void 0 : data2.last) == null ? void 0 : _a2.id
           });
         });
     }, [id]);
@@ -85776,8 +85781,8 @@ ${generateSegmentFilename(i4)}`);
       id: id2,
       index: index2,
       key: index2
-    })), next && /* @__PURE__ */ import_react142.default.createElement(NextPageObserver_default, {
-      id: next
+    })), prev && /* @__PURE__ */ import_react142.default.createElement(PrevPageObserver_default, {
+      id: prev
     })), /* @__PURE__ */ import_react142.default.createElement(WorkspaceAside, null, cart.length > 0 && /* @__PURE__ */ import_react142.default.createElement(WorkspaceActions, null, /* @__PURE__ */ import_react142.default.createElement(Button_default, {
       onClick: () => handleCart(cart)
     }, "Harvest ", cart.length, " Resource(s)"), /* @__PURE__ */ import_react142.default.createElement(Button_default, {
@@ -85799,7 +85804,7 @@ ${generateSegmentFilename(i4)}`);
   // src/dev.tsx
   var import_client = __toESM(require_client());
   var Wrapper = () => {
-    const endpoint = "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json";
+    const endpoint = "https://iiif.bodleian.ox.ac.uk/iiif/activity/all-changes";
     const handleCallback = (cart) => {
       console.log(cart);
     };
