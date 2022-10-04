@@ -85804,7 +85804,7 @@ ${generateSegmentFilename(i4)}`);
   // src/dev.tsx
   var import_client = __toESM(require_client());
   var Wrapper = () => {
-    const endpoint = "https://iiif.bodleian.ox.ac.uk/iiif/activity/all-changes";
+    const endpoint = "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json";
     const handleCallback = (cart) => {
       console.log(cart);
     };
