@@ -10,6 +10,7 @@ import {
   PanelBody,
   PanelContent,
   PanelHeader,
+  PanelHeaderTime,
 } from "@/components/UI/Workspace/Panel/Panel.styled";
 import Button from "@/components/UI/Button/Button";
 import Modal from "@/components/UI/Modal/Modal";
@@ -35,7 +36,7 @@ const OrderedItem: React.FC<OrderedItemProps> = ({
           <ArrowForward />
         </SVG>
         <Badge>{type}</Badge>
-        {endTime && <Badge>{endTime}</Badge>}
+        {endTime && <PanelHeaderTime>{endTime}</PanelHeaderTime>}
       </PanelHeader>
       <PanelBody>
         <PanelContent>

@@ -1,4 +1,5 @@
 import { styled } from "@/stitches";
+import { SVGStyled } from "@/components/UI/SVG/SVG.styled";
 
 const PanelActions = styled("div", {
   display: "flex",
@@ -14,11 +15,16 @@ const PanelContent = styled("div", {
   justifyContent: "flex-end",
   flexDirection: "column",
   fontSize: "1rem",
+  minWidth: "0",
 
   "a, a:visited": {
+    width: "100%",
     color: "#000a",
     textDecoration: "none",
     transition: "$all",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
 
     "&:hover, &:active": {
       color: "#5746af",
@@ -27,10 +33,25 @@ const PanelContent = styled("div", {
 });
 
 const PanelHeader = styled("header", {
-  fontWeight: "700",
   fontSize: "1rem",
   display: "flex",
-  alignContent: "center",
+  alignItems: "flex-end",
+  alignContent: "flex-end",
+
+  [`> ${SVGStyled}`]: {
+    display: "flex",
+    position: "relative",
+    margin: "0 0.25rem 0 0",
+    top: "-0.05rem",
+    opacity: "0.5",
+  },
+});
+
+const PanelHeaderTime = styled("span", {
+  display: "flex",
+  color: "#000a",
+  fontSize: "0.8333rem",
+  margin: "0 0 0 0.5rem",
 });
 
 const PanelStyled = styled("article", {
@@ -53,4 +74,11 @@ const PanelStyled = styled("article", {
   },
 });
 
-export { PanelStyled, PanelHeader, PanelContent, PanelBody, PanelActions };
+export {
+  PanelStyled,
+  PanelHeader,
+  PanelHeaderTime,
+  PanelContent,
+  PanelBody,
+  PanelActions,
+};

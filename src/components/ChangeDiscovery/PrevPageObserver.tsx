@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 import { useOrderedCollectionDispatch } from "@/context/ordered-collection-context";
+import { ButtonStyled } from "@/components/UI/Button/Button.styled";
 
 interface PrevPageObserverProps {
   id: string;
@@ -22,9 +23,14 @@ const PrevPageObserver: React.FC<PrevPageObserverProps> = ({ id }) => {
     });
 
   return (
-    <button data-id={id} onClick={handlePrev} ref={ref}>
-      Previous Page
-    </button>
+    <ButtonStyled
+      data-id={id}
+      onClick={handlePrev}
+      ref={ref}
+      css={{ margin: 0 }}
+    >
+      Load More
+    </ButtonStyled>
   );
 };
 

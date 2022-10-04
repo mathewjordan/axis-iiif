@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, Ref } from "react";
 import { ButtonStyled } from "@/components/UI/Button/Button.styled";
 
 interface ButtonProps {
