@@ -6,7 +6,7 @@ const Wrapper = () => {
   const endpoint =
     "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json";
 
-  const handleCallback = (cart) => {
+  const handleCallback = (cart: string[]) => {
     console.log(cart);
   };
 
