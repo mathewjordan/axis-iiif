@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 
 const Wrapper = () => {
   const endpoint =
-    "https://utkdigitalinitiatives.github.io/change_discovery/activity/all-changes.json";
+    "https://iiif.bodleian.ox.ac.uk/iiif/activity/all-changes";
 
   const handleCallback = (cart: string[]) => {
     console.log(cart);
