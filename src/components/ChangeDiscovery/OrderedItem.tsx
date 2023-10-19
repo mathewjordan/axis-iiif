@@ -14,7 +14,7 @@ import Modal from "@/components/UI/Modal/Modal";
 import Panel from "@/components/UI/Workspace/Panel/Panel";
 import React from "react";
 import SVG from "@/components//UI/SVG/SVG";
-import { Viewer } from "@samvera/clover-iiif";
+import Viewer from "@samvera/clover-iiif/viewer";
 
 interface OrderedItemProps {
   activity: ActivityType;
