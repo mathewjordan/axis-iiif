@@ -1,10 +1,4 @@
 import { ActivityType, OrderedItemObjectShape } from "@/types/change-discovery";
-import React from "react";
-import Clover from "@samvera/clover-iiif";
-import Badge from "@/components/UI/Badge/Badge";
-import Panel from "@/components/UI/Workspace/Panel/Panel";
-import SVG from "@/components//UI/SVG/SVG";
-import { ArrowForward } from "@/components/UI/SVG/Paths";
 import {
   PanelActions,
   PanelBody,
@@ -12,8 +6,15 @@ import {
   PanelHeader,
   PanelHeaderTime,
 } from "@/components/UI/Workspace/Panel/Panel.styled";
+
+import { ArrowForward } from "@/components/UI/SVG/Paths";
+import Badge from "@/components/UI/Badge/Badge";
 import Button from "@/components/UI/Button/Button";
 import Modal from "@/components/UI/Modal/Modal";
+import Panel from "@/components/UI/Workspace/Panel/Panel";
+import React from "react";
+import SVG from "@/components//UI/SVG/SVG";
+import { Viewer } from "@samvera/clover-iiif";
 
 interface OrderedItemProps {
   activity: ActivityType;
@@ -51,12 +52,10 @@ const OrderedItem: React.FC<OrderedItemProps> = ({
             </Button>
           )}
           <Modal buttonText="Preview" title={id}>
-            <Clover
-              id={id}
+            <Viewer
+              iiifContent={id}
               options={{
                 canvasHeight: "500px",
-                showIIIFBadge: false,
-                showInformationToggle: false,
               }}
             />
           </Modal>
